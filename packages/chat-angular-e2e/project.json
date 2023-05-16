@@ -1,0 +1,33 @@
+{
+  "name": "chat-angular-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/chat-angular-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "packages/chat-angular-e2e/cypress.config.ts",
+        "devServerTarget": "chat-angular:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "chat-angular:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "chat-angular:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/chat-angular-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["chat-angular"]
+}
